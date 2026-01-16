@@ -11,11 +11,12 @@ export async function generateMetadata({ params }) {
 
 export async function generateStaticParams() {
   const cabins = await getCabins();
-  const ids = cabins.map((cabin) => {
-    cabinId: String(cabin.id);
-  });
-  return ids;
+
+  return cabins.map((cabin) => ({
+    cabinId: String(cabin.id),
+  }));
 }
+
 
 export default async function Page({ params }) {
   const cabin = await getCabin(params.cabinId);
